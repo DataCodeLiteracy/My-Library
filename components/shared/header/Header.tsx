@@ -1,9 +1,18 @@
+'use client'
+
 import { IoMdSearch } from 'react-icons/io'
 import * as s from './Header.css'
 
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+
+const EXCLUSION_PATHS = ['/login', '/register', '/reset-password']
 
 const Header = () => {
+  const path = usePathname()
+
+  if (EXCLUSION_PATHS.includes(path)) return null
+
   return (
     <section>
       <nav className={s.nav}>
