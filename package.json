@@ -1,4 +1,6 @@
 {
+  "name": "my-library",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,6 +11,9 @@
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "@tanstack/react-query": "^5.17.9",
+    "@vanilla-extract/css": "^1.14.1",
+    "@vanilla-extract/dynamic": "^2.1.0",
+    "@vanilla-extract/recipes": "^0.5.2",
     "autoprefixer": "10.4.17",
     "geist": "^1.2.1",
     "next": "latest",
