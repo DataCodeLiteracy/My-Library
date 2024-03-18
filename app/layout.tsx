@@ -1,5 +1,7 @@
 import './globals.css'
 
+import RecoilRootProvider from '@/recoil/RecoilRootProvider'
+
 export const metadata = {
   title: 'My Library',
   description: 'My Library App'
@@ -13,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <RecoilRootProvider>{children}</RecoilRootProvider>
       </body>
     </html>
   )
