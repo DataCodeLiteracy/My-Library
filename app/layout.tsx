@@ -1,5 +1,6 @@
 import './globals.css'
 
+import Providers from '@/react-query/Providers'
 import RecoilRootProvider from '@/recoil/RecoilRootProvider'
 
 export const metadata = {
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <RecoilRootProvider>{children}</RecoilRootProvider>
+        <RecoilRootProvider>
+          <Providers>{children}</Providers>
+        </RecoilRootProvider>
       </body>
     </html>
   )
