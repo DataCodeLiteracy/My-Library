@@ -5,6 +5,7 @@ import Header from '@/components/shared/header/Header'
 import Providers from '@/react-query/Providers'
 
 import RecoilRootProvider from '@/recoil/RecoilRootProvider'
+import { AlertContextProvider } from '@/contexts/AlertContext'
 
 export const metadata = {
   title: 'My Library',
@@ -20,10 +21,12 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <RecoilRootProvider>
-          <Providers>
-            <Header />
-            {children}
-          </Providers>
+          <AlertContextProvider>
+            <Providers>
+              <Header />
+              {children}
+            </Providers>
+          </AlertContextProvider>
         </RecoilRootProvider>
       </body>
     </html>

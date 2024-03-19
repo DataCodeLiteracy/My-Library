@@ -8,9 +8,11 @@ import { UserInfo } from '@/interfaces/auth/auth'
 import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
 import { useMutation } from '@tanstack/react-query'
+import useAlertContext from '@/hooks/useAlertContext'
 
 const RegisterForm = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
+  const { open, close } = useAlertContext()
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -30,7 +32,14 @@ const RegisterForm = ({ children }: { children: ReactNode }) => {
     })
 
     if (String(signUpError).includes('Email rate limit exceeded')) {
-      alert('시간당 회원가입 요청을 초과했습니다. 잠시 후에 다시 시도해주세요.')
+      open({
+        title: '회원가입 요청 횟수 초과',
+        description:
+          '시간당 회원가입 요청 횟수를 초과했습니다. 잠시 후에 다시 시도해주세요.',
+        onRightButtonClick: () => {
+          close()
+        }
+      })
     }
 
     return data
