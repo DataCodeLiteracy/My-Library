@@ -53,7 +53,7 @@ export const inputStyle = style([
     padding: '10px',
     marginBottom: '6px',
     fontSize: '14px',
-    border: '1px solid #011B5B',
+    border: '1px solid rgba(0,0,0,0.2)',
     borderRadius: '10px',
     backgroundColor: 'rgba(150,226,250,0.3)',
     outline: 'none',
