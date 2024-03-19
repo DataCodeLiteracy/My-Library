@@ -2,7 +2,14 @@ import { UserInfo } from '@/interfaces/auth/auth'
 
 import { ValidationFunctions } from '@/utils/isValidationCheck'
 
-import { ChangeEvent, FormEvent, useRef, useState } from 'react'
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react'
 
 export interface useFormProps {
   formType: string
@@ -30,6 +37,24 @@ const useForm = ({ formType, onSubmit, validate }: useFormProps) => {
   const [isResetPasswordCheck, setIsResetPasswordCheck] = useState(false)
 
   const formRef = useRef<HTMLFormElement>(null)
+
+  const checkPassword = useCallback(() => {
+    if (values?.password === '') {
+      setIsValid((prev) => ({ ...prev, rePassword: true }))
+    } else {
+      if (values?.password !== values?.rePassword) {
+        setIsValid((prev) => ({ ...prev, rePassword: false }))
+      }
+
+      if (values?.password === values?.rePassword) {
+        setIsValid((prev) => ({ ...prev, rePassword: true }))
+      }
+    }
+  }, [values?.password, values?.rePassword])
+
+  useEffect(() => {
+    checkPassword()
+  }, [checkPassword, values?.password, values?.rePassword])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target

@@ -7,8 +7,8 @@ import { ReactNode } from 'react'
 const ResetPasswordForm = ({ children }: { children: ReactNode }) => {
   return (
     <FormContext
-      formType="login"
-      id="login-form"
+      formType="reset-password"
+      id="reset-password-form"
       className=""
       validate={validationFunctions}
     >

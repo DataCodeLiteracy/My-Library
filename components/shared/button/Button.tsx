@@ -20,7 +20,12 @@ const Button = ({
   onClick
 }: ButtonProps) => {
   return (
-    <button type={type} className={style} onClick={onClick} disabled={disabled}>
+    <button
+      type={type}
+      className={`${disabled ? s.disabledButton : ''} ${style}`}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {text}
     </button>
   )

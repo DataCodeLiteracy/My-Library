@@ -13,3 +13,7 @@ export const buttonStyle = style([
     backgroundColor: '#E191FD'
   }
 ])
+
+export const disabledButton = style({
+  cursor: 'default'
+})
