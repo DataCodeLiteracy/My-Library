@@ -62,3 +62,31 @@ export const inputStyle = style([
     }
   }
 ])
+
+export const oAuthButtonWrap = style([
+  f.flex,
+  f.justifyAround,
+  f.wFull,
+  { marginBottom: '10px' }
+])
+
+export const oAuthButtonStyle = style([
+  f.flexCenterBox,
+  {
+    width: '40px',
+    height: '40px',
+    border: '1px solid rgba(0,0,0,0.3)',
+    borderRadius: '100%'
+  }
+])
+
+export const authDividerLine = style({
+  width: '42%',
+  height: '1px',
+  backgroundColor: 'rgba(0,0,0,0.3)'
+})
+
+export const authDividerText = style({
+  margin: '0px 8px',
+  fontSize: '12px'
+})

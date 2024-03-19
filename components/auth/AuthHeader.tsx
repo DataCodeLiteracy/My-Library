@@ -7,8 +7,8 @@ const AuthHeader = () => {
       <Image
         src="/images/my_library_logo.png"
         alt="logo image"
-        width={100}
-        height={100}
+        width={80}
+        height={80}
       />
     </Link>
   )
