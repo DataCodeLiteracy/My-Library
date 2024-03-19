@@ -9,15 +9,11 @@ import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import useAlertContext from '@/hooks/useAlertContext'
+import { supabase } from '@/utils/supabase/client'
 
 const RegisterForm = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const { open, close } = useAlertContext()
-
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
 
   const signUpNewUser = async (values: UserInfo) => {
     const { data, error: signUpError } = await supabase.auth.signUp({
@@ -48,7 +44,17 @@ const RegisterForm = ({ children }: { children: ReactNode }) => {
   const { mutate: register } = useMutation({
     mutationFn: signUpNewUser,
     onSuccess: (data) => {
-      if (data.user !== null) router.push('/login')
+      if (data.user !== null) {
+        open({
+          title: '회원가입에 성공했습니다.',
+          description:
+            '이메일을 확인한 뒤 Confirm your mail 버튼을 클릭하고 로그인하세요.',
+          onRightButtonClick: () => {
+            close()
+          }
+        })
+        router.push('/login')
+      }
     },
     onError: (error) => console.error('회원가입 실패', error)
   })
