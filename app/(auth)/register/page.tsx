@@ -1,4 +1,5 @@
 import AuthHeader from '@/components/auth/AuthHeader'
+import AuthInput from '@/components/auth/AuthInput'
 import AuthPage from '@/components/auth/AuthPage'
 
 const Register = () => {

@@ -38,3 +38,27 @@ export const authPageWrapper = style([
       '0px 4px 16px rgba(17, 17, 26, 0.1), 0px 8px 24px rgba(17, 17, 26, 0.1), 0px 16px 56px rgba(17, 17, 26, 0.1)'
   }
 ])
+
+export const validationText = style({
+  color: 'red',
+  fontSize: '12px',
+  marginLeft: '10px',
+  marginBottom: '6px'
+})
+
+export const inputStyle = style([
+  f.wFull,
+  {
+    height: '44px',
+    padding: '10px',
+    marginBottom: '6px',
+    fontSize: '14px',
+    border: '1px solid #011B5B',
+    borderRadius: '10px',
+    backgroundColor: 'rgba(150,226,250,0.3)',
+    outline: 'none',
+    '::placeholder': {
+      fontSize: '12px'
+    }
+  }
+])
