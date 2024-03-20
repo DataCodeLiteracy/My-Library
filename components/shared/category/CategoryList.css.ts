@@ -1,7 +1,8 @@
 import { style } from "@vanilla-extract/css"
 
 export const CategoryListContainer = style({
-  margin: "30px 0"
+  margin: "30px 0",
+  padding: "10px 20px"
 })
 
 export const CategoryListTitle = style({

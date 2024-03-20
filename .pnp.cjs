@@ -47,6 +47,7 @@ const RAW_RUNTIME_STATE =
           ["react-icons", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:5.0.1"],\
           ["recoil", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:0.7.7"],\
           ["server-only", "npm:0.0.1"],\
+          ["swiper", "npm:11.0.7"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"]\
         ],\
         "linkType": "SOFT"\
@@ -2831,6 +2832,7 @@ const RAW_RUNTIME_STATE =
           ["react-icons", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:5.0.1"],\
           ["recoil", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:0.7.7"],\
           ["server-only", "npm:0.0.1"],\
+          ["swiper", "npm:11.0.7"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"]\
         ],\
         "linkType": "SOFT"\
@@ -3548,6 +3550,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["supports-color", "npm:7.2.0"],\
           ["has-flag", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["swiper", [\
+      ["npm:11.0.7", {\
+        "packageLocation": "./.yarn/cache/swiper-npm-11.0.7-d14c0a02a9-438e210786.zip/node_modules/swiper/",\
+        "packageDependencies": [\
+          ["swiper", "npm:11.0.7"]\
         ],\
         "linkType": "HARD"\
       }]\

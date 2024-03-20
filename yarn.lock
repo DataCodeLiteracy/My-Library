@@ -2308,6 +2308,7 @@ __metadata:
     react-icons: "npm:^5.0.1"
     recoil: "npm:^0.7.7"
     server-only: "npm:^0.0.1"
+    swiper: "npm:^11.0.7"
     typescript: "npm:5.3.3"
   languageName: unknown
   linkType: soft
@@ -2942,6 +2943,13 @@ __metadata:
   dependencies:
     has-flag: "npm:^4.0.0"
   checksum: 10/c8bb7afd564e3b26b50ca6ee47572c217526a1389fe018d00345856d4a9b08ffbd61fadaf283a87368d94c3dcdb8f5ffe2650a5a65863e21ad2730ca0f05210a
+  languageName: node
+  linkType: hard
+
+"swiper@npm:^11.0.7":
+  version: 11.0.7
+  resolution: "swiper@npm:11.0.7"
+  checksum: 10/438e21078634545167be8ab97b85c2a9313f943b56b1d52ebd203374754f1c328deefe864b48379ec2775783e282296bafcff2312d52bc979d8659f9aa88659a
   languageName: node
   linkType: hard
 

@@ -10,8 +10,8 @@ interface MainProps {
 const Main = ({ item }: MainProps) => {
   return (
     <div>
-      <CategoryList title='내가 좋아하는 책' item={item} />
-      <CategoryList title='내가 많이 읽는 책' item={item} />
+      <CategoryList type='swiper' title='내가 좋아하는 책' item={item} />
+      <CategoryList type='swiper' title='내가 많이 읽는 책' item={item} />
     </div>
   )
 }
