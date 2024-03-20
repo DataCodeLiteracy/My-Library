@@ -1,3 +1,3 @@
-import './reset.css'
+import "./reset.css"
 
-import './globals.css.ts'
+import "./globals.css"
