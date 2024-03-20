@@ -1,5 +1,6 @@
 "use client"
 
+import { supabase } from "@/utils/supabase/client"
 import * as s from "./Auth.css"
 
 import Image from "next/image"
@@ -15,8 +16,22 @@ const getImageSize = (type: string) => {
 const OAuthButton = ({ type }: { type: string }) => {
   const { width, height } = getImageSize(type)
 
+  const handleOAuthLogin = async () => {
+    if (type === "/images/google.png") {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "google"
+      })
+    }
+
+    if (type === "/images/kakao.png") {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: "kakao"
+      })
+    }
+  }
+
   return (
-    <button className={s.oAuthButtonStyle}>
+    <button className={s.oAuthButtonStyle} onClick={handleOAuthLogin}>
       <Image src={type} alt='logo image' width={width} height={height} />
     </button>
   )
