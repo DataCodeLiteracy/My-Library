@@ -41,6 +41,15 @@ const LogInForm = ({ children }: { children: ReactNode }) => {
       })
     }
 
+    if (String(signInError).includes("Invalid login credentials")) {
+      open({
+        title: "아이디나 비밀번호 정보를 다시 확인해주세요.",
+        onRightButtonClick: () => {
+          close()
+        }
+      })
+    }
+
     return data
   }
 
