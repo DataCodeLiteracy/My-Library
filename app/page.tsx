@@ -1,9 +1,13 @@
 import Main from "@/components/main/Main"
 
-const page = () => {
+import { getBookData } from "@/api/bookApi"
+
+const page = async () => {
+  const data = await getBookData()
+
   return (
     <section>
-      <Main />
+      <Main item={data.item} />
     </section>
   )
 }
