@@ -1,9 +1,11 @@
-import * as s from './Auth.css'
+"use client"
 
-import Image from 'next/image'
+import * as s from "./Auth.css"
+
+import Image from "next/image"
 
 const getImageSize = (type: string) => {
-  if (type.includes('apple.png')) {
+  if (type.includes("apple.png")) {
     return { width: 45, height: 30 }
   } else {
     return { width: 30, height: 30 }
@@ -15,7 +17,7 @@ const OAuthButton = ({ type }: { type: string }) => {
 
   return (
     <button className={s.oAuthButtonStyle}>
-      <Image src={type} alt="구글 로고 이미지" width={width} height={height} />
+      <Image src={type} alt='logo image' width={width} height={height} />
     </button>
   )
 }
