@@ -5,7 +5,7 @@ const withVanillaExtract = createVanillaExtractPlugin()
 
 const nextConfig = {
   images: {
-    domains: ["image.aladin.co.kr"]
+    remotePatterns: [{ protocol: "https", hostname: "image.aladin.co.kr" }]
   }
 }
 
