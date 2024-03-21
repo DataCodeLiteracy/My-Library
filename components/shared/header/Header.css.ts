@@ -23,7 +23,6 @@ export const inputWrap = style([
   f.flex,
   f.alignCenter,
   {
-    position: "relative",
     marginRight: "20px"
   }
 ])
@@ -38,8 +37,13 @@ export const searchInput = style({
   backgroundColor: "rgba(0,0,0,0.14)"
 })
 
+export const searchForm = style({
+  position: "relative"
+})
+
 export const icon = style({
   position: "absolute",
+  top: "7px",
   right: "10px"
 })
 

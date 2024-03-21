@@ -11,7 +11,7 @@ import useAlertContext from "@/hooks/useAlertContext"
 import { removeLocalToken } from "@/utils/localToken"
 import authState from "@/recoil/authAtom"
 import { useSetRecoilState } from "recoil"
-import { useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import Link from "next/link"
 
 const EXCLUSION_PATHS = ["/login", "/register", "/reset-password"]
@@ -26,6 +26,7 @@ export const SUB_CATEGORY = [
 
 const Header = () => {
   const [isShowCategory, setIsShowCategory] = useState(false)
+  const [searchKeyword, setSearchKeyword] = useState("")
 
   const setAuthStateValue = useSetRecoilState(authState)
   const router = useRouter()
@@ -66,6 +67,16 @@ const Header = () => {
   const handleSubCategoryClick = (sub: string) => {
     router.push(`/category/${sub}`)
     setIsShowCategory(false)
+  }
+
+  const handleKeywordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchKeyword(e.target.value)
+  }
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    router.push(`/search?keyword=${searchKeyword}`)
   }
 
   useEffect(() => {
@@ -124,12 +135,18 @@ const Header = () => {
         </div>
         <div className={s.rightBox}>
           <div className={s.inputWrap}>
-            <input
-              type='text'
-              placeholder='검색어를 입력하세요.'
-              className={s.searchInput}
-            />
-            <IoMdSearch className={s.icon} />
+            <form className={s.searchForm} onSubmit={handleSubmit}>
+              <input
+                type='text'
+                placeholder='검색어를 입력하세요.'
+                className={s.searchInput}
+                value={searchKeyword}
+                onChange={handleKeywordChange}
+              />
+              <button className={s.icon} type='submit'>
+                <IoMdSearch />
+              </button>
+            </form>
           </div>
           <button onClick={handleLogOut}>로그아웃</button>
         </div>
