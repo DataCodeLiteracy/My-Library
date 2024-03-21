@@ -21,6 +21,8 @@ const SearchKeywordList = () => {
     queryFn: () => searchKeywordData(keyword)
   })
 
+  console.log(data?.item)
+
   return (
     <div className={s.searchListContainer}>
       <div>
@@ -31,7 +33,7 @@ const SearchKeywordList = () => {
           <CategoryList type='search-keyword' item={data && data?.item} />
         </article>
       </div>
-      {bookStateValue.isPopUpOpen && <RegisterBookPopUp />}
+      {bookStateValue.isPopUpOpen && <RegisterBookPopUp item={data?.item} />}
     </div>
   )
 }

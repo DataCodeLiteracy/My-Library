@@ -8,6 +8,7 @@ import { Item } from "@/interfaces/auth/book"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useSetRecoilState } from "recoil"
+import { QueryClient } from "@tanstack/react-query"
 
 interface BookItemProps {
   book: Item
@@ -20,9 +21,15 @@ const BookItem = ({ book }: BookItemProps) => {
 
   const path = usePathname()
 
+  const queryClient = new QueryClient()
+
   const handleSearchPageClick = () => {
     if (path === "/search") {
-      setBookState((prev) => ({ ...prev, isPopUpOpen: true }))
+      setBookState((prev) => ({
+        ...prev,
+        isPopUpOpen: true,
+        searchBookId: book.itemId
+      }))
     }
   }
 
