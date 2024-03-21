@@ -1,7 +1,13 @@
+"use client"
+
+import bookState from "@/recoil/bookAtom"
 import * as s from "./Book.css"
 
 import { Item } from "@/interfaces/auth/book"
+
 import Image from "next/image"
+import { usePathname } from "next/navigation"
+import { useSetRecoilState } from "recoil"
 
 interface BookItemProps {
   book: Item
@@ -10,8 +16,18 @@ interface BookItemProps {
 const BookItem = ({ book }: BookItemProps) => {
   const bookCategory = book.categoryName.split(">").pop()
 
+  const setBookState = useSetRecoilState(bookState)
+
+  const path = usePathname()
+
+  const handleSearchPageClick = () => {
+    if (path === "/search") {
+      setBookState((prev) => ({ ...prev, isPopUpOpen: true }))
+    }
+  }
+
   return (
-    <li>
+    <li className={s.BookItem} onClick={handleSearchPageClick}>
       <div>
         <Image src={book.cover} alt='book image' width={215} height={300} />
       </div>

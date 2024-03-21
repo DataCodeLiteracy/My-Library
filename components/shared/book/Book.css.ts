@@ -29,3 +29,7 @@ export const BookAuthor = style({
   whiteSpace: "nowrap",
   textOverflow: "ellipsis"
 })
+
+export const BookItem = style({
+  cursor: "pointer"
+})

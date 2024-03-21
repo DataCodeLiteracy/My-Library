@@ -14,8 +14,7 @@ const nextConfig = {
         destination: "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx/:path*"
       }
     ]
-  },
-  trailingSlash: true
+  }
 }
 
 module.exports = withVanillaExtract(nextConfig)

@@ -6,7 +6,7 @@ import * as s from "./Header.css"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { supabase } from "@/utils/supabase/client"
-import { useMutation } from "@tanstack/react-query"
+import { QueryClient, useMutation } from "@tanstack/react-query"
 import useAlertContext from "@/hooks/useAlertContext"
 import { removeLocalToken } from "@/utils/localToken"
 import authState from "@/recoil/authAtom"
@@ -37,6 +37,8 @@ const Header = () => {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut()
   }
+
+  const queryClient = new QueryClient()
 
   const { mutate: logout } = useMutation({
     mutationFn: signOut,
@@ -77,6 +79,8 @@ const Header = () => {
     e.preventDefault()
 
     router.push(`/search?keyword=${searchKeyword}`)
+
+    queryClient.invalidateQueries({ queryKey: ["search", searchKeyword] })
   }
 
   useEffect(() => {

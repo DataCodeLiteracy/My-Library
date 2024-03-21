@@ -26,7 +26,7 @@ export const searchKeywordData = async (keyword: string) => {
     ttbKey: TTB_KEY,
     Query: keyword,
     QueryType: "Title",
-    MaxResults: "10",
+    MaxResults: "50",
     start: "1",
     SearchTarget: "Book",
     output: "js",

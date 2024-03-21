@@ -10,7 +10,7 @@ interface BookItemListProps {
 const BookItemList = ({ item }: BookItemListProps) => {
   return (
     <ul className={s.BookListStyle}>
-      {item.map((book) => (
+      {item?.map((book) => (
         <BookItem key={book.itemId} book={book} />
       ))}
     </ul>
