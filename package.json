@@ -35,5 +35,6 @@
     "@vanilla-extract/next-plugin": "^2.3.7",
     "autoprefixer": "^10.4.17"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.1.1",
+  "proxy": "http://www.aladin.co.kr"
 }
