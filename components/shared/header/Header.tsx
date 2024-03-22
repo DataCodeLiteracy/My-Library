@@ -89,6 +89,10 @@ const Header = () => {
     queryClient.invalidateQueries({ queryKey: ["search", searchKeyword] })
   }
 
+  const moveToPage = (menu: string) => {
+    router.push(`/${menu}`)
+  }
+
   useEffect(() => {
     const getUser = async () => {
       const userData = await supabase.auth.getUser()
@@ -141,10 +145,10 @@ const Header = () => {
                 </ul>
               </div>
             )}
-            <button>읽은 책</button>
-            <button>읽지않은 책</button>
-            <button>서평</button>
-            <button>아이디어</button>
+            <button onClick={() => moveToPage("read")}>읽은 책</button>
+            <button onClick={() => moveToPage("no-read")}>읽지않은 책</button>
+            <button onClick={() => moveToPage("book-review")}>서평</button>
+            <button onClick={() => moveToPage("idea")}>아이디어</button>
           </div>
         </div>
         <div className={s.rightBox}>
