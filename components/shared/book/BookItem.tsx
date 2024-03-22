@@ -8,6 +8,7 @@ import { Item } from "@/interfaces/auth/book"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { useSetRecoilState } from "recoil"
+import { useRouter } from "next/navigation"
 
 interface BookItemProps {
   book: Item
@@ -19,6 +20,7 @@ const BookItem = ({ book }: BookItemProps) => {
   const setBookState = useSetRecoilState(bookState)
 
   const path = usePathname()
+  const router = useRouter()
 
   const handleSearchPageClick = () => {
     if (path === "/search") {
@@ -27,6 +29,8 @@ const BookItem = ({ book }: BookItemProps) => {
         isPopUpOpen: true,
         searchBookId: book.itemId
       }))
+    } else {
+      router.push(`/mybook/${book.isbn13}`)
     }
   }
 
