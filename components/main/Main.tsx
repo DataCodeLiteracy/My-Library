@@ -7,7 +7,7 @@ import { supabase } from "@/utils/supabase/client"
 import { useEffect, useState } from "react"
 import { useSetRecoilState } from "recoil"
 import CategoryList from "../shared/category/CategoryList"
-import { useQuery } from "@tanstack/react-query"
+import { QueryClient, useQuery } from "@tanstack/react-query"
 import { getMyBookData } from "@/api/bookApi"
 
 const Main = () => {
@@ -15,6 +15,8 @@ const Main = () => {
 
   const [myLikeBooks, setMyLikeBooks] = useState<MyBookInfo[]>([])
   const [myReadBooks, setMyLeadBooks] = useState<MyBookInfo[]>([])
+
+  const queryClient = new QueryClient()
 
   const setAuthStateValue = useSetRecoilState(authState)
 
@@ -33,10 +35,14 @@ const Main = () => {
   useEffect(() => {
     const myReadBooks = data ? data?.filter((item) => item.isRead === true) : []
     const myLikeBooks = data ? data?.filter((item) => item.isLike === true) : []
-    checkLogin()
+
     setMyLeadBooks(myReadBooks)
     setMyLikeBooks(myLikeBooks)
-  }, [])
+
+    checkLogin()
+
+    queryClient.invalidateQueries({ queryKey: ["mybook"] })
+  }, [data])
 
   return (
     <div>

@@ -97,6 +97,10 @@ const Header = () => {
     getUser()
   }, [])
 
+  useEffect(() => {
+    setIsShowCategory(false)
+  }, [path])
+
   if (EXCLUSION_PATHS.includes(path)) return null
 
   return (
