@@ -1,3 +1,5 @@
+import * as s from "../../DetailPage.css"
+
 import DetailPageBookList from "@/components/detail/DetailPageBookList"
 
 interface DetailPageProps {
@@ -6,7 +8,7 @@ interface DetailPageProps {
 
 const DetailPage = ({ params: { isbn13 } }: DetailPageProps) => {
   return (
-    <section>
+    <section className={s.DetailPageSection}>
       <DetailPageBookList isbn13={isbn13} />
     </section>
   )
