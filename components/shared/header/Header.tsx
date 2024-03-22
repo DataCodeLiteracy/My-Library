@@ -21,7 +21,13 @@ export const SUB_CATEGORY = [
   { categoryId: 1, categoryPath: "economy", categoryName: "경제/경영" },
   { categoryId: 2, categoryPath: "history", categoryName: "역사" },
   { categoryId: 3, categoryPath: "infants", categoryName: "유아" },
-  { categoryId: 4, categoryPath: "self-development", categoryName: "자기계발" }
+  { categoryId: 4, categoryPath: "self-development", categoryName: "자기계발" },
+  { categoryId: 5, categoryPath: "humanities", categoryName: "인문학" },
+  {
+    categoryId: 6,
+    categoryPath: "computer-mobile",
+    categoryName: "컴퓨터/모바일"
+  }
 ]
 
 const Header = () => {
