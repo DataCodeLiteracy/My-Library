@@ -1,6 +1,6 @@
 import * as s from "./Search.css"
 
-import { Item } from "@/interfaces/auth/book"
+import { Item, MyBookInfo } from "@/interfaces/auth/book"
 import bookState from "@/recoil/bookAtom"
 import { ChangeEvent, useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
@@ -9,18 +9,23 @@ import BackDrop from "../shared/backdrop/BackDrop"
 import Image from "next/image"
 import Button from "../shared/button/Button"
 import { trimText } from "@/utils/trimText"
+import { supabase } from "@/utils/supabase/client"
 
 interface RegisterBookPopUpProps {
   item: Item[]
 }
 
 const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
+  const [myBookInfo, setMyBookInfo] = useState<MyBookInfo>({} as MyBookInfo)
   const [searchedBook, setSearchedBook] = useState<Item>({} as Item)
   const [checkBoxValue, setCheckBoxValue] = useState({
     read: false,
     noRead: false,
     like: false
   })
+
+  // console.log(searchedBook)
+
   const [readCount, setReadCount] = useState(0)
 
   const [bookStateValue, setBookState] = useRecoilState(bookState)
@@ -38,11 +43,39 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
     setReadCount(+e.target.value)
   }
 
+  const handleSaveMyBookInfo = async () => {
+    await supabase.from("mybook").insert([{ ...myBookInfo }])
+    setBookState((prev) => ({ ...prev, isPopUpOpen: false }))
+  }
+
   useEffect(() => {
     setSearchedBook(
       item?.filter((v) => v.itemId === bookStateValue.searchBookId)[0]
     )
   }, [])
+
+  useEffect(() => {
+    setMyBookInfo({
+      title: searchedBook?.title,
+      author: searchedBook?.author,
+      categoryId: searchedBook?.categoryId,
+      categoryName: searchedBook?.categoryName,
+      description: searchedBook?.description,
+      cover: searchedBook?.cover,
+      pubDate: searchedBook?.pubDate,
+      publisher: searchedBook?.publisher,
+      itemId: searchedBook?.itemId,
+      isbn: searchedBook?.isbn,
+      isbn13: searchedBook?.isbn13,
+      link: searchedBook?.link,
+      priceSales: searchedBook?.priceSales,
+      priceStandard: searchedBook?.priceStandard,
+      isRead: checkBoxValue.read,
+      isNoRead: checkBoxValue.noRead,
+      isLike: checkBoxValue.like,
+      readCount
+    })
+  }, [searchedBook, checkBoxValue, readCount])
 
   const bookTitle =
     searchedBook?.title?.includes("-") && searchedBook.title.split("-")[0]
@@ -123,7 +156,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
             </label>
           </div>
         </div>
-        <Button text='등록하기' />
+        <Button text='등록하기' onClick={handleSaveMyBookInfo} />
       </div>
     </BackDrop>
   )

@@ -1,3 +1,10 @@
+export interface MyBookInfo extends Item {
+  isRead: boolean
+  isNoRead: boolean
+  isLike: boolean
+  readCount: number
+}
+
 export interface BookApiResponse {
   title: string
   link: string
@@ -24,17 +31,17 @@ export interface Item {
   isbn13: string
   priceSales: number
   priceStandard: number
-  mallType: string
-  stockStatus: string
-  mileage: number
+  mallType?: string
+  stockStatus?: string
+  mileage?: number
   cover: string
   categoryId: number
   categoryName: string
   publisher: string
-  salesPoint: number
-  adult: boolean
-  fixedPrice: boolean
-  customerReviewRank: number
+  salesPoint?: number
+  adult?: boolean
+  fixedPrice?: boolean
+  customerReviewRank?: number
   seriesInfo?: SeriesInfo
   subInfo?: SubInfo
 }
