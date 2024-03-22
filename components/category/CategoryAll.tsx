@@ -1,16 +1,16 @@
 "use client"
 
-import { Item } from "@/interfaces/auth/book"
+import { getMyBookData } from "@/api/bookApi"
+import { useQuery } from "@tanstack/react-query"
 import CategoryList from "../shared/category/CategoryList"
+import { useEffect } from "react"
 
-interface CategoryAllProps {
-  item: Item[]
-}
+const CategoryAll = () => {
+  const { data } = useQuery({ queryKey: ["mybook"], queryFn: getMyBookData })
 
-const CategoryAll = ({ item }: CategoryAllProps) => {
   return (
     <div>
-      <CategoryList type='all' item={item} />
+      <CategoryList type='all' item={data} />
     </div>
   )
 }

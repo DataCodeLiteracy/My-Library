@@ -1,10 +1,10 @@
 import * as s from "./Book.css"
 
-import { Item } from "@/interfaces/auth/book"
+import { MyBookInfo } from "@/interfaces/auth/book"
 import BookItem from "./BookItem"
 
 interface BookItemListProps {
-  item: Item[]
+  item: MyBookInfo[] | undefined
 }
 
 const BookItemList = ({ item }: BookItemListProps) => {

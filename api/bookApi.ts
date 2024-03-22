@@ -1,4 +1,5 @@
-import { BookApiResponse } from "@/interfaces/auth/book"
+import { BookApiResponse, MyBookInfo } from "@/interfaces/auth/book"
+import { supabase } from "@/utils/supabase/client"
 
 const BASE_URL_LIST = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
 const BASE_URL_SEARCH = "/search/api"
@@ -37,4 +38,15 @@ export const searchKeywordData = async (keyword: string) => {
   const response = await fetch(`${BASE_URL_SEARCH}?${params.toString()}`)
 
   return response.json()
+}
+
+export const getMyBookData = async (): Promise<MyBookInfo[]> => {
+  const { data, error } = await supabase.from("mybook").select("*")
+
+  if (error) {
+    console.error(error)
+    return []
+  }
+
+  return data || []
 }

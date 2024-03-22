@@ -3,14 +3,14 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import "./BookSwiper.css"
 
-import { Item } from "@/interfaces/auth/book"
+import { MyBookInfo } from "@/interfaces/auth/book"
 import SwiperCore from "swiper"
 import { Navigation, Scrollbar } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import BookItem from "../book/BookItem"
 
 interface BookSwiperProps {
-  item: Item[]
+  item: MyBookInfo[] | undefined
 }
 
 const BookSwiper = ({ item }: BookSwiperProps) => {
@@ -24,12 +24,8 @@ const BookSwiper = ({ item }: BookSwiperProps) => {
           spaceBetween={20}
           slidesPerView={5}
           navigation={true}
-          // autoplay={{
-          //   delay: 4500,
-          //   disableOnInteraction: false
-          // }}
         >
-          {item.map((book) => (
+          {item?.map((book) => (
             <SwiperSlide key={book.itemId}>
               <BookItem book={book} />
             </SwiperSlide>

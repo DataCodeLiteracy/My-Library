@@ -1,13 +1,13 @@
 import * as s from "./CategoryList.css"
 
-import { Item } from "@/interfaces/auth/book"
+import { Item, MyBookInfo } from "@/interfaces/auth/book"
 import BookItemList from "../book/BookItemList"
 import BookSwiper from "../swiper/BookSwiper"
 
 interface CategoryListProps {
   type: string
   title?: string
-  item: Item[]
+  item: MyBookInfo[] | undefined
 }
 
 const CategoryList = ({ title, item, type }: CategoryListProps) => {

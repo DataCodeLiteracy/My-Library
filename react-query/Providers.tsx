@@ -1,40 +1,36 @@
-'use client';
+"use client"
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-import { ReactNode } from 'react';
+import { ReactNode } from "react"
 
 function makeQueryClient() {
   return new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-      },
-    },
-  });
+    defaultOptions: {}
+  })
 }
 
-let browserQueryClient: QueryClient | undefined = undefined;
+let browserQueryClient: QueryClient | undefined = undefined
 
 function getQueryClient() {
-  if (typeof window === 'undefined') {
-    return makeQueryClient();
+  if (typeof window === "undefined") {
+    return makeQueryClient()
   } else {
-    if (!browserQueryClient) browserQueryClient = makeQueryClient();
-    return browserQueryClient;
+    if (!browserQueryClient) browserQueryClient = makeQueryClient()
+    return browserQueryClient
   }
 }
 
 type Props = {
-  children: ReactNode;
-};
+  children: ReactNode
+}
 
 const Providers = ({ children }: Props) => {
-  const queryClient = getQueryClient();
+  const queryClient = getQueryClient()
 
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
+  )
+}
 
-export default Providers;
+export default Providers

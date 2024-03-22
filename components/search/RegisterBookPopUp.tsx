@@ -10,6 +10,8 @@ import Image from "next/image"
 import Button from "../shared/button/Button"
 import { trimText } from "@/utils/trimText"
 import { supabase } from "@/utils/supabase/client"
+import { useRouter } from "next/navigation"
+import { QueryClient } from "@tanstack/react-query"
 
 interface RegisterBookPopUpProps {
   item: Item[]
@@ -23,12 +25,11 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
     noRead: false,
     like: false
   })
-
-  // console.log(searchedBook)
-
   const [readCount, setReadCount] = useState(0)
-
   const [bookStateValue, setBookState] = useRecoilState(bookState)
+
+  const router = useRouter()
+  const queryClient = new QueryClient()
 
   const handlePopUpClose = () => {
     setBookState((prev) => ({ ...prev, isPopUpOpen: false }))
@@ -46,6 +47,8 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
   const handleSaveMyBookInfo = async () => {
     await supabase.from("mybook").insert([{ ...myBookInfo }])
     setBookState((prev) => ({ ...prev, isPopUpOpen: false }))
+    queryClient.invalidateQueries({ queryKey: ["mybook"] })
+    router.push("/category")
   }
 
   useEffect(() => {
