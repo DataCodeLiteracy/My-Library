@@ -735,7 +735,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/gotrue-js@npm:2.62.2":
+"@supabase/gotrue-js@npm:2.62.2, @supabase/gotrue-js@npm:^2.62.2":
   version: 2.62.2
   resolution: "@supabase/gotrue-js@npm:2.62.2"
   dependencies:
@@ -2287,6 +2287,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "my-library@workspace:."
   dependencies:
+    "@supabase/gotrue-js": "npm:^2.62.2"
     "@supabase/ssr": "npm:latest"
     "@supabase/supabase-js": "npm:latest"
     "@tanstack/react-query": "npm:^5.17.9"

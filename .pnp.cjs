@@ -26,6 +26,7 @@ const RAW_RUNTIME_STATE =
       [null, {\
         "packageLocation": "./",\
         "packageDependencies": [\
+          ["@supabase/gotrue-js", "npm:2.62.2"],\
           ["@supabase/ssr", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:0.1.0"],\
           ["@supabase/supabase-js", "npm:2.39.8"],\
           ["@tanstack/react-query", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:5.28.4"],\
@@ -2811,6 +2812,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["my-library", "workspace:."],\
+          ["@supabase/gotrue-js", "npm:2.62.2"],\
           ["@supabase/ssr", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:0.1.0"],\
           ["@supabase/supabase-js", "npm:2.39.8"],\
           ["@tanstack/react-query", "virtual:0637f61cb811ee92c6f24eab25268bfdd0af903c154c9ccef11374c0ead88216774d20e9033a6b553fd9011114bc39bda4bcfff1bd7f19053bfd25653f0c0fba#npm:5.28.4"],\

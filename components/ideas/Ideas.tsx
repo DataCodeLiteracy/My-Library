@@ -15,7 +15,7 @@ const Ideas = ({ isbn13 }: IdeasProps) => {
   return (
     <ul>
       {data?.map((book) => (
-        <IdeaItem item={book} />
+        <IdeaItem key={book.created_at} item={book} />
       ))}
     </ul>
   )

@@ -15,7 +15,7 @@ const Reviews = ({ isbn13 }: ReviewsProps) => {
   return (
     <ul>
       {data?.map((book) => (
-        <ReviewItem item={book} />
+        <ReviewItem key={book.created_at} item={book} />
       ))}
     </ul>
   )
