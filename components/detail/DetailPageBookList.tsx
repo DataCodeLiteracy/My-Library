@@ -10,7 +10,13 @@ import {
 } from "@/api/bookApi"
 import { MyBookInfo } from "@/interfaces/auth/book"
 import { QueryClient, useQuery } from "@tanstack/react-query"
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import {
+  ChangeEvent,
+  FormEvent,
+  MouseEventHandler,
+  useEffect,
+  useState
+} from "react"
 import Image from "next/image"
 import Button from "../shared/button/Button"
 import { trimText } from "@/utils/trimText"
@@ -46,8 +52,10 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
 
   const { open, close } = useAlertContext()
 
-  const handleRegisterReview = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleRegisterReview: MouseEventHandler<HTMLButtonElement> = async (
+    e
+  ) => {
+    e.stopPropagation()
 
     const { count, data, error, status } = await supabase
       .from("reviews")
@@ -66,8 +74,10 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
     }
   }
 
-  const handleRegisterIdea = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleRegisterIdea: MouseEventHandler<HTMLButtonElement> = async (
+    e
+  ) => {
+    e.stopPropagation()
 
     const { count, data, error, status } = await supabase
       .from("ideas")
@@ -153,17 +163,17 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
         <div className={s.ideaBoxWrap}>
           <h2 className={s.subTitle}>아이디어</h2>
           <Ideas isbn13={isbn13} />
-          <form onSubmit={handleRegisterIdea}>
+          <div>
             <textarea
               className={s.ideaTextArea}
               value={ideaText}
               onChange={handleIdeaTextChange}
             />
-            <Button text='아이디어 등록하기' type='submit' />
-          </form>
+            <Button text='아이디어 등록하기' onClick={handleRegisterIdea} />
+          </div>
         </div>
       </div>
-      <form className={s.bookReviewWrap} onSubmit={handleRegisterReview}>
+      <div className={s.bookReviewWrap}>
         <h2 className={s.subTitle}>서평</h2>
         <Reviews isbn13={isbn13} />
         <textarea
@@ -171,8 +181,12 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
           value={reviewText}
           onChange={handleReviewTextChange}
         />
-        <Button text='서평 등록하기' type='submit' />
-      </form>
+        <Button
+          text='서평 등록하기'
+          type='submit'
+          onClick={handleRegisterReview}
+        />
+      </div>
     </div>
   )
 }

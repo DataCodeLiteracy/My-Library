@@ -7,7 +7,7 @@ interface ReviewsProps {
 }
 
 const Reviews = ({ isbn13 }: ReviewsProps) => {
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["reviews", isbn13],
     queryFn: () => getMyBookReviewData(isbn13)
   })
@@ -15,7 +15,7 @@ const Reviews = ({ isbn13 }: ReviewsProps) => {
   return (
     <ul>
       {data?.map((book) => (
-        <ReviewItem key={book.created_at} item={book} />
+        <ReviewItem key={book.created_at} item={book} refetch={refetch} />
       ))}
     </ul>
   )

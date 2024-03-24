@@ -1,11 +1,14 @@
 import { style } from "@vanilla-extract/css"
 import { f } from "@/styles/functions"
 
-export const reviewItemStyle = style({
-  padding: "10px",
-  marginBottom: "20px",
-  border: "1px solid rgba(0,0,0,0.2)"
-})
+export const reviewItemStyle = style([
+  f.pRelative,
+  {
+    padding: "10px",
+    marginBottom: "20px",
+    border: "1px solid rgba(0,0,0,0.2)"
+  }
+])
 
 export const titleInfo = style([
   f.flex,
@@ -31,3 +34,5 @@ export const kebabIcon = style({
   height: "20px",
   cursor: "pointer"
 })
+
+export const kebabIconWrap = style([f.pRelative])

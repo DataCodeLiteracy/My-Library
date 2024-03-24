@@ -7,7 +7,7 @@ interface IdeasProps {
 }
 
 const Ideas = ({ isbn13 }: IdeasProps) => {
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["ideas", isbn13],
     queryFn: () => getMyBookIdeaData(isbn13)
   })
@@ -15,7 +15,7 @@ const Ideas = ({ isbn13 }: IdeasProps) => {
   return (
     <ul>
       {data?.map((book) => (
-        <IdeaItem key={book.created_at} item={book} />
+        <IdeaItem key={book.created_at} item={book} refetch={refetch} />
       ))}
     </ul>
   )

@@ -55,6 +55,7 @@ interface SeriesInfo {
 interface SubInfo {}
 
 export interface ReviewItem {
+  id: number
   created_at: string
   isbn13: string
   contents: string
@@ -62,6 +63,7 @@ export interface ReviewItem {
 }
 
 export interface IdeaItem {
+  id: number
   created_at: string
   isbn13: string
   contents: string

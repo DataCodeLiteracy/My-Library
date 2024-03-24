@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import Alert from '@/components/shared/alert/Alert'
+import Alert from "@/components/shared/alert/Alert"
 
 import {
   ComponentProps,
@@ -10,11 +10,11 @@ import {
   useMemo,
   useState,
   useEffect
-} from 'react'
-import { createPortal } from 'react-dom'
+} from "react"
+import { createPortal } from "react-dom"
 
 type AlertProps = ComponentProps<typeof Alert>
-type AlertOptions = Omit<AlertProps, 'open'>
+type AlertOptions = Omit<AlertProps, "open">
 
 export interface AlertContextValue {
   open: (options: AlertOptions) => void
@@ -63,11 +63,11 @@ export const AlertContextProvider = ({
   )
 
   useEffect(() => {
-    let el = document.getElementById('root-portal')
+    let el = document.getElementById("root-portal")
 
     if (!el) {
-      el = document.createElement('div')
-      el.id = 'root-portal'
+      el = document.createElement("div")
+      el.id = "root-portal"
       document.body.appendChild(el)
     }
 
