@@ -3,7 +3,11 @@
 import * as s from "./DetailPageBook.css"
 import { MdDeleteSweep } from "react-icons/md"
 
-import { getMyBookData, getMyBookReviewData } from "@/api/bookApi"
+import {
+  getMyBookData,
+  getMyBookIdeaData,
+  getMyBookReviewData
+} from "@/api/bookApi"
 import { MyBookInfo } from "@/interfaces/auth/book"
 import { QueryClient, useQuery } from "@tanstack/react-query"
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
@@ -11,10 +15,11 @@ import Image from "next/image"
 import Button from "../shared/button/Button"
 import { trimText } from "@/utils/trimText"
 import Link from "next/link"
-import Reviews from "@/app/(detail)/reviews/Reviews"
+import Reviews from "@/components/reviews/Reviews"
 import { supabase } from "@/utils/supabase/client"
 import useAlertContext from "@/hooks/useAlertContext"
 import { makeQueryClient } from "@/react-query/Providers"
+import Ideas from "../ideas/Ideas"
 
 interface DetailPageBookListProps {
   isbn13: string
@@ -23,11 +28,16 @@ interface DetailPageBookListProps {
 const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
   const [detailBook, setDetailBook] = useState<MyBookInfo>({} as MyBookInfo)
   const [reviewText, setReviewText] = useState("")
+  const [ideaText, setIdeaText] = useState("")
 
   const { data } = useQuery({ queryKey: ["mybook"], queryFn: getMyBookData })
   const { refetch } = useQuery({
     queryKey: ["reviews", isbn13],
     queryFn: () => getMyBookReviewData(isbn13)
+  })
+  const { refetch: ideaRefetch } = useQuery({
+    queryKey: ["ideas", isbn13],
+    queryFn: () => getMyBookIdeaData(isbn13)
   })
 
   const filterData = (data: MyBookInfo[] | undefined) => {
@@ -49,7 +59,27 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
 
       open({
         title: "서평 등록이 완료되었습니다.",
-        onRightButtonClick: async () => {
+        onRightButtonClick: () => {
+          close()
+        }
+      })
+    }
+  }
+
+  const handleRegisterIdea = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    const { count, data, error, status } = await supabase
+      .from("ideas")
+      .insert([{ contents: ideaText, isbn13 }])
+
+    if (status === 201) {
+      setIdeaText("")
+      ideaRefetch()
+
+      open({
+        title: "아이디어 등록이 완료되었습니다.",
+        onRightButtonClick: () => {
           close()
         }
       })
@@ -58,6 +88,10 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
 
   const handleReviewTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setReviewText(e.target.value)
+  }
+
+  const handleIdeaTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setIdeaText(e.target.value)
   }
 
   useEffect(() => {
@@ -118,11 +152,15 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
         </div>
         <div className={s.ideaBoxWrap}>
           <h2 className={s.subTitle}>아이디어</h2>
-
-          <div>
-            <textarea className={s.ideaTextArea} />
-            <Button text='아이디어 등록하기' />
-          </div>
+          <Ideas isbn13={isbn13} />
+          <form onSubmit={handleRegisterIdea}>
+            <textarea
+              className={s.ideaTextArea}
+              value={ideaText}
+              onChange={handleIdeaTextChange}
+            />
+            <Button text='아이디어 등록하기' type='submit' />
+          </form>
         </div>
       </div>
       <form className={s.bookReviewWrap} onSubmit={handleRegisterReview}>

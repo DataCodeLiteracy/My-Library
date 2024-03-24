@@ -60,3 +60,10 @@ export interface ReviewItem {
   contents: string
   user_id: string
 }
+
+export interface IdeaItem {
+  created_at: string
+  isbn13: string
+  contents: string
+  user_id: string
+}

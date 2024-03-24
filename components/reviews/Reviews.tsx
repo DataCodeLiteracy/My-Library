@@ -1,7 +1,6 @@
 import { getMyBookReviewData } from "@/api/bookApi"
-import { QueryClient, useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import ReviewItem from "./ReviewItem"
-import { useEffect } from "react"
 
 interface ReviewsProps {
   isbn13: string
