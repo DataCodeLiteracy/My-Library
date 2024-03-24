@@ -1,4 +1,5 @@
 export interface MyBookInfo extends Item {
+  id?: number
   isRead: boolean
   isNoRead: boolean
   isLike: boolean

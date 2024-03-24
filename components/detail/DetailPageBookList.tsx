@@ -1,31 +1,25 @@
 "use client"
 
-import * as s from "./DetailPageBook.css"
 import { MdDeleteSweep } from "react-icons/md"
+import * as s from "./DetailPageBook.css"
 
 import {
   getMyBookData,
   getMyBookIdeaData,
   getMyBookReviewData
 } from "@/api/bookApi"
-import { MyBookInfo } from "@/interfaces/auth/book"
-import { QueryClient, useQuery } from "@tanstack/react-query"
-import {
-  ChangeEvent,
-  FormEvent,
-  MouseEventHandler,
-  useEffect,
-  useState
-} from "react"
-import Image from "next/image"
-import Button from "../shared/button/Button"
-import { trimText } from "@/utils/trimText"
-import Link from "next/link"
 import Reviews from "@/components/reviews/Reviews"
-import { supabase } from "@/utils/supabase/client"
 import useAlertContext from "@/hooks/useAlertContext"
-import { makeQueryClient } from "@/react-query/Providers"
+import { MyBookInfo } from "@/interfaces/auth/book"
+import { supabase } from "@/utils/supabase/client"
+import { trimText } from "@/utils/trimText"
+import { useQuery } from "@tanstack/react-query"
+import Image from "next/image"
+import Link from "next/link"
+import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react"
 import Ideas from "../ideas/Ideas"
+import Button from "../shared/button/Button"
+import { useRouter } from "next/navigation"
 
 interface DetailPageBookListProps {
   isbn13: string
@@ -36,7 +30,12 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
   const [reviewText, setReviewText] = useState("")
   const [ideaText, setIdeaText] = useState("")
 
-  const { data } = useQuery({ queryKey: ["mybook"], queryFn: getMyBookData })
+  const router = useRouter()
+
+  const { data: myBookData, refetch: myBookRefetch } = useQuery({
+    queryKey: ["mybook"],
+    queryFn: getMyBookData
+  })
   const { refetch } = useQuery({
     queryKey: ["reviews", isbn13],
     queryFn: () => getMyBookReviewData(isbn13)
@@ -48,6 +47,10 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
 
   const filterData = (data: MyBookInfo[] | undefined) => {
     return data?.filter((item) => item.isbn13 === isbn13)[0]
+  }
+
+  const getMyBookId = (data: MyBookInfo[] | undefined) => {
+    return data?.filter((item) => item.isbn13 === isbn13)[0].id
   }
 
   const { open, close } = useAlertContext()
@@ -104,12 +107,27 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
     setIdeaText(e.target.value)
   }
 
+  const handleDeleteMyBook = async () => {
+    const id = getMyBookId(myBookData)
+
+    await supabase.from("mybook").delete().eq("id", id)
+    myBookRefetch()
+
+    open({
+      title: "삭제가 완료되었습니다.",
+      onRightButtonClick: () => {
+        close()
+        router.push("/category")
+      }
+    })
+  }
+
   useEffect(() => {
-    const book = filterData(data)
+    const book = filterData(myBookData)
     if (book) {
       setDetailBook(book)
     }
-  }, [data, isbn13])
+  }, [myBookData, isbn13])
 
   const bookTitle =
     detailBook?.title?.includes("-") && detailBook.title.split("-")[0]
@@ -123,7 +141,10 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
         <div className={s.detailBookWrap}>
           <div className={s.bookReviewTitleWrap}>
             <h1 className={s.detailBookTitle}>{bookTitle}</h1>
-            <MdDeleteSweep className={s.deleteIcon} />
+            <MdDeleteSweep
+              className={s.deleteIcon}
+              onClick={handleDeleteMyBook}
+            />
           </div>
           <div className={s.detailBookImageAndInfoWrap}>
             <div>
