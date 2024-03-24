@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 import { ReactNode } from "react"
 
-function makeQueryClient() {
+export function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {}
   })

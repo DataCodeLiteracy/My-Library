@@ -1,4 +1,4 @@
-import { BookApiResponse, MyBookInfo } from "@/interfaces/auth/book"
+import { BookApiResponse, MyBookInfo, ReviewItem } from "@/interfaces/auth/book"
 import { supabase } from "@/utils/supabase/client"
 
 const BASE_URL_LIST = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
@@ -48,5 +48,21 @@ export const getMyBookData = async (): Promise<MyBookInfo[]> => {
     return []
   }
 
+  return data || []
+}
+
+export const getMyBookReviewData = async (
+  isbn13: string
+): Promise<ReviewItem[]> => {
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .eq("isbn13", isbn13)
+
+  if (error) {
+    console.error("리뷰 조회 실패:", error)
+  } else {
+    console.log("조회된 리뷰:", data)
+  }
   return data || []
 }

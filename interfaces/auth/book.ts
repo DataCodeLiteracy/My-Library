@@ -53,3 +53,10 @@ interface SeriesInfo {
 }
 
 interface SubInfo {}
+
+export interface ReviewItem {
+  created_at: string
+  isbn13: string
+  contents: string
+  user_id: string
+}
