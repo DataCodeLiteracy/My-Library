@@ -1,10 +1,10 @@
 import { style } from "@vanilla-extract/css"
 
-export const categoryPageSection = style({
+export const reviewListPageSection = style({
   margin: "20px 0",
   padding: "20px"
 })
 
-export const categoryPageTitle = style({
+export const reviewListPageTitle = style({
   fontSize: "30px"
 })

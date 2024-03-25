@@ -1,15 +1,16 @@
-import '@/styles'
+import "@/styles"
 
-import Header from '@/components/shared/header/Header'
+import Header from "@/components/shared/header/Header"
 
-import Providers from '@/react-query/Providers'
+import { AlertContextProvider } from "@/contexts/AlertContext"
 
-import RecoilRootProvider from '@/recoil/RecoilRootProvider'
-import { AlertContextProvider } from '@/contexts/AlertContext'
+import Providers from "@/react-query/Providers"
+
+import RecoilRootProvider from "@/recoil/RecoilRootProvider"
 
 export const metadata = {
-  title: 'My Library',
-  description: 'My Library App'
+  title: "My Library",
+  description: "My Library App"
 }
 
 export default function RootLayout({
@@ -18,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
+    <html lang='ko'>
       <body>
         <RecoilRootProvider>
           <AlertContextProvider>

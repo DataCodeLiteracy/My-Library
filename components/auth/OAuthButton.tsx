@@ -1,9 +1,10 @@
 "use client"
 
-import { supabase } from "@/utils/supabase/client"
 import * as s from "./Auth.css"
 
 import Image from "next/image"
+
+import { supabase } from "@/utils/supabase/client"
 
 const getImageSize = (type: string) => {
   if (type.includes("apple.png")) {

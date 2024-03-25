@@ -1,6 +1,8 @@
 import { getMyBookIdeaData } from "@/api/bookApi"
-import { useQuery } from "@tanstack/react-query"
+
 import IdeaItem from "./IdeaItem"
+
+import { useQuery } from "@tanstack/react-query"
 
 interface IdeasProps {
   isbn13: string

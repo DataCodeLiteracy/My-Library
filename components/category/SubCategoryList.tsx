@@ -1,11 +1,15 @@
 "use client"
 
 import { getMyBookData } from "@/api/bookApi"
-import { QueryClient, useQuery } from "@tanstack/react-query"
-import { usePathname } from "next/navigation"
-import CategoryList from "../shared/category/CategoryList"
+
+import CategoryList from "@/components/shared/category/CategoryList"
+
 import { MyBookInfo } from "@/interfaces/auth/book"
+
+import { QueryClient, useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
+
+import { usePathname } from "next/navigation"
 
 const filterData = (data: MyBookInfo[] | undefined, categoryIds: number[]) => {
   return data

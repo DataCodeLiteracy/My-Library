@@ -48,7 +48,6 @@ const ResetPasswordFormView = () => {
   const { mutate: sendEmailMutate } = useMutation({
     mutationFn: sendEmail,
     onSuccess: (data) => {
-      console.log(data)
       if (data !== null) {
         console.log("비밀번호 재설정 이메일 발송 성공")
       }
@@ -60,7 +59,6 @@ const ResetPasswordFormView = () => {
   const { mutate: modifyPasswordMutate } = useMutation({
     mutationFn: modifyPassword,
     onSuccess: (data) => {
-      console.log(data)
       if (data !== null) {
         console.log("비밀번호 재설정 성공")
         router.push("/login")
@@ -80,7 +78,6 @@ const ResetPasswordFormView = () => {
       !isEmpty?.password &&
       !isEmpty?.rePassword
     ) {
-      console.log(1)
       modifyPasswordMutate()
     }
   }

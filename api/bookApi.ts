@@ -56,6 +56,37 @@ export const getMyBookData = async (): Promise<MyBookInfo[]> => {
   return data || []
 }
 
+export const getMyBookReviewFilterData = async (
+  type: string
+): Promise<MyBookInfo[] | undefined> => {
+  const { data: reviewsData, error } = await supabase
+    .from(`${type === "reviews" ? "reviews" : "ideas"} `)
+    .select("isbn13")
+
+  if (error) {
+    console.error(error)
+    return []
+  }
+
+  const distinctIsbn13s = Array.from(
+    new Set(reviewsData.map((review) => review.isbn13))
+  )
+
+  if (distinctIsbn13s) {
+    const { data: myBooks, error: myBookError } = await supabase
+      .from("mybook")
+      .select("*")
+      .in("isbn13", distinctIsbn13s)
+
+    if (myBookError) {
+      console.error(myBookError)
+      return
+    }
+
+    return myBooks
+  }
+}
+
 export const getMyBookReviewData = async (
   isbn13: string
 ): Promise<ReviewItem[]> => {

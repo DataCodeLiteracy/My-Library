@@ -1,9 +1,10 @@
 "use client"
 
 import { getMyBookData } from "@/api/bookApi"
+
+import CategoryList from "@/components/shared/category/CategoryList"
+
 import { useQuery } from "@tanstack/react-query"
-import CategoryList from "../shared/category/CategoryList"
-import { useEffect } from "react"
 
 const CategoryAll = () => {
   const { data } = useQuery({ queryKey: ["mybook"], queryFn: getMyBookData })

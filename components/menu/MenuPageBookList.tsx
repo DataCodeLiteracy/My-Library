@@ -1,10 +1,13 @@
 "use client"
 
 import { getMyBookData } from "@/api/bookApi"
+
+import CategoryList from "@/components/shared/category/CategoryList"
+
 import { MyBookInfo } from "@/interfaces/auth/book"
+
 import { useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
-import CategoryList from "../shared/category/CategoryList"
 
 interface MenuPageBookListProps {
   type: string

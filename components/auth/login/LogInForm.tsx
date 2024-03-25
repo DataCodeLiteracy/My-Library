@@ -1,18 +1,21 @@
 "use client"
 
+import FormContext from "@/contexts/FormContext"
+
+import useAlertContext from "@/hooks/useAlertContext"
+
 import { UserInfo } from "@/interfaces/auth/auth"
 
-import FormContext from "@/contexts/FormContext"
-import { validationFunctions } from "@/utils/isValidationCheck"
-
-import { ReactNode } from "react"
-import { useRouter } from "next/navigation"
-import useAlertContext from "@/hooks/useAlertContext"
-import { useMutation } from "@tanstack/react-query"
-import { supabase } from "@/utils/supabase/client"
-import { setLocalToken } from "@/utils/localToken"
 import authState from "@/recoil/authAtom"
+import { useMutation } from "@tanstack/react-query"
+import { ReactNode } from "react"
 import { useSetRecoilState } from "recoil"
+
+import { useRouter } from "next/navigation"
+
+import { validationFunctions } from "@/utils/isValidationCheck"
+import { setLocalToken } from "@/utils/localToken"
+import { supabase } from "@/utils/supabase/client"
 
 export type LoginUserInfo = {
   email: UserInfo["email"]

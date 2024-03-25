@@ -1,17 +1,20 @@
 import * as s from "./Search.css"
 
+import BackDrop from "@/components/shared/backdrop/BackDrop"
+import Button from "@/components/shared/button/Button"
+
 import { Item, MyBookInfo } from "@/interfaces/auth/book"
+
 import bookState from "@/recoil/bookAtom"
+import { QueryClient } from "@tanstack/react-query"
 import { ChangeEvent, useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
-import BackDrop from "../shared/backdrop/BackDrop"
 
 import Image from "next/image"
-import Button from "../shared/button/Button"
-import { trimText } from "@/utils/trimText"
-import { supabase } from "@/utils/supabase/client"
 import { useRouter } from "next/navigation"
-import { QueryClient } from "@tanstack/react-query"
+
+import { supabase } from "@/utils/supabase/client"
+import { trimText } from "@/utils/trimText"
 
 interface RegisterBookPopUpProps {
   item: Item[]
@@ -22,7 +25,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
   const [searchedBook, setSearchedBook] = useState<Item>({} as Item)
   const [checkBoxValue, setCheckBoxValue] = useState({
     read: false,
-    noRead: false,
+    noRead: true,
     like: false
   })
   const [readCount, setReadCount] = useState(0)
@@ -38,6 +41,18 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
   const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target
     setCheckBoxValue((prev) => ({ ...prev, [name]: checked }))
+
+    if (name === "read") {
+      checked === true
+        ? setCheckBoxValue((prev) => ({ ...prev, noRead: false, read: true }))
+        : setCheckBoxValue((prev) => ({ ...prev, noRead: true, read: false }))
+    }
+
+    if (name === "noRead") {
+      checked === true
+        ? setCheckBoxValue((prev) => ({ ...prev, read: false, noRead: true }))
+        : setCheckBoxValue((prev) => ({ ...prev, read: true, noRead: false }))
+    }
   }
 
   const handleReadCountChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -119,6 +134,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
                 id='read'
                 className={s.checkBoxInput}
                 name='read'
+                checked={checkBoxValue.read}
                 onChange={handleCheckBoxChange}
               />
               읽음
@@ -141,6 +157,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
                 id='noRead'
                 name='noRead'
                 className={s.checkBoxInput}
+                checked={checkBoxValue.noRead}
                 onChange={handleCheckBoxChange}
               />
               안 읽음

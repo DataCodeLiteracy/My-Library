@@ -1,18 +1,21 @@
 "use client"
 
-import { IoMdSearch } from "react-icons/io"
 import * as s from "./Header.css"
+import { IoMdSearch } from "react-icons/io"
+
+import useAlertContext from "@/hooks/useAlertContext"
+
+import authState from "@/recoil/authAtom"
+import { QueryClient, useMutation } from "@tanstack/react-query"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { useSetRecoilState } from "recoil"
 
 import Image from "next/image"
-import { usePathname, useRouter } from "next/navigation"
-import { supabase } from "@/utils/supabase/client"
-import { QueryClient, useMutation } from "@tanstack/react-query"
-import useAlertContext from "@/hooks/useAlertContext"
-import { removeLocalToken } from "@/utils/localToken"
-import authState from "@/recoil/authAtom"
-import { useSetRecoilState } from "recoil"
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
+
+import { removeLocalToken } from "@/utils/localToken"
+import { supabase } from "@/utils/supabase/client"
 
 const EXCLUSION_PATHS = ["/login", "/register", "/reset-password"]
 

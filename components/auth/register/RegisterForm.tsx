@@ -1,14 +1,17 @@
 "use client"
-import { createBrowserClient } from "@supabase/ssr"
 
 import FormContext from "@/contexts/FormContext"
-import { validationFunctions } from "@/utils/isValidationCheck"
+
+import useAlertContext from "@/hooks/useAlertContext"
 
 import { UserInfo } from "@/interfaces/auth/auth"
-import { useRouter } from "next/navigation"
-import { ReactNode } from "react"
+
 import { useMutation } from "@tanstack/react-query"
-import useAlertContext from "@/hooks/useAlertContext"
+import { ReactNode } from "react"
+
+import { useRouter } from "next/navigation"
+
+import { validationFunctions } from "@/utils/isValidationCheck"
 import { supabase } from "@/utils/supabase/client"
 
 const RegisterForm = ({ children }: { children: ReactNode }) => {

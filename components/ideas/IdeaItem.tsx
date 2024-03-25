@@ -1,12 +1,17 @@
 import * as s from "./Idea.css"
 import { CiMenuKebab } from "react-icons/ci"
-import { IdeaItem } from "@/interfaces/auth/book"
-import { supabase } from "@/utils/supabase/client"
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react"
-import KebabBox from "../shared/box/KebabBox"
-import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query"
+
+import KebabBox from "@/components/shared/box/KebabBox"
+import ModifyTextBox from "@/components/shared/box/ModifyTextBox"
+
 import useAlertContext from "@/hooks/useAlertContext"
-import ModifyTextBox from "../shared/box/ModifyTextBox"
+
+import { IdeaItem } from "@/interfaces/auth/book"
+
+import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query"
+import { MouseEventHandler, useEffect, useRef, useState } from "react"
+
+import { supabase } from "@/utils/supabase/client"
 
 interface IdeaItemProps {
   item: IdeaItem

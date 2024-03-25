@@ -3,11 +3,13 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import "./BookSwiper.css"
 
+import BookItem from "@/components/shared/book/BookItem"
+
 import { MyBookInfo } from "@/interfaces/auth/book"
+
 import SwiperCore from "swiper"
 import { Navigation, Scrollbar } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import BookItem from "../book/BookItem"
 
 interface BookSwiperProps {
   item: MyBookInfo[] | undefined

@@ -1,8 +1,9 @@
 import * as s from "./CategoryList.css"
 
-import { Item, MyBookInfo } from "@/interfaces/auth/book"
-import BookItemList from "../book/BookItemList"
-import BookSwiper from "../swiper/BookSwiper"
+import BookItemList from "@/components/shared/book/BookItemList"
+import BookSwiper from "@/components/shared/swiper/BookSwiper"
+
+import { MyBookInfo } from "@/interfaces/auth/book"
 
 interface CategoryListProps {
   type: string
