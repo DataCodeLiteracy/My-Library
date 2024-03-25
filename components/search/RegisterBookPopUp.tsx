@@ -25,7 +25,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
   const [searchedBook, setSearchedBook] = useState<Item>({} as Item)
   const [checkBoxValue, setCheckBoxValue] = useState({
     read: false,
-    noRead: false,
+    noRead: true,
     like: false
   })
   const [readCount, setReadCount] = useState(0)
@@ -41,6 +41,18 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
   const handleCheckBoxChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target
     setCheckBoxValue((prev) => ({ ...prev, [name]: checked }))
+
+    if (name === "read") {
+      checked === true
+        ? setCheckBoxValue((prev) => ({ ...prev, noRead: false, read: true }))
+        : setCheckBoxValue((prev) => ({ ...prev, noRead: true, read: false }))
+    }
+
+    if (name === "noRead") {
+      checked === true
+        ? setCheckBoxValue((prev) => ({ ...prev, read: false, noRead: true }))
+        : setCheckBoxValue((prev) => ({ ...prev, read: true, noRead: false }))
+    }
   }
 
   const handleReadCountChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -122,6 +134,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
                 id='read'
                 className={s.checkBoxInput}
                 name='read'
+                checked={checkBoxValue.read}
                 onChange={handleCheckBoxChange}
               />
               읽음
@@ -144,6 +157,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
                 id='noRead'
                 name='noRead'
                 className={s.checkBoxInput}
+                checked={checkBoxValue.noRead}
                 onChange={handleCheckBoxChange}
               />
               안 읽음
