@@ -47,26 +47,35 @@ const ModifyTextBox = ({
   const handleModify: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.stopPropagation()
 
-    if (type === "reviews") {
-      const { data, error } = await supabase
-        .from("reviews")
-        .update({ contents: modifyText })
-        .eq("id", id)
-    }
-    if (type === "ideas") {
-      const { data, error } = await supabase
-        .from("ideas")
-        .update({ contents: modifyText })
-        .eq("id", id)
-    }
-    open({
-      title: "수정이 완료되었습니다.",
-      onRightButtonClick: () => {
-        close()
+    if (modifyText.trim() === "") {
+      open({
+        title: "내용을 입력해주세요.",
+        onRightButtonClick: () => {
+          close()
+        }
+      })
+    } else {
+      if (type === "reviews") {
+        const { data, error } = await supabase
+          .from("reviews")
+          .update({ contents: modifyText })
+          .eq("id", id)
       }
-    })
-    await refetch()
-    setIsModifyOpen(false)
+      if (type === "ideas") {
+        const { data, error } = await supabase
+          .from("ideas")
+          .update({ contents: modifyText })
+          .eq("id", id)
+      }
+      open({
+        title: "수정이 완료되었습니다.",
+        onRightButtonClick: () => {
+          close()
+        }
+      })
+      await refetch()
+      setIsModifyOpen(false)
+    }
   }
 
   return (

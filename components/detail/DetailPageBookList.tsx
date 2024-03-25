@@ -66,20 +66,29 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
   ) => {
     e.stopPropagation()
 
-    const { count, data, error, status } = await supabase
-      .from("reviews")
-      .insert([{ contents: reviewText, isbn13 }])
-
-    if (status === 201) {
-      setReviewText("")
-      refetch()
-
+    if (reviewText.trim() === "") {
       open({
-        title: "서평 등록이 완료되었습니다.",
+        title: "내용을 입력해주세요.",
         onRightButtonClick: () => {
           close()
         }
       })
+    } else {
+      const { count, data, error, status } = await supabase
+        .from("reviews")
+        .insert([{ contents: reviewText, isbn13 }])
+
+      if (status === 201) {
+        setReviewText("")
+        refetch()
+
+        open({
+          title: "서평 등록이 완료되었습니다.",
+          onRightButtonClick: () => {
+            close()
+          }
+        })
+      }
     }
   }
 
@@ -88,20 +97,29 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
   ) => {
     e.stopPropagation()
 
-    const { count, data, error, status } = await supabase
-      .from("ideas")
-      .insert([{ contents: ideaText, isbn13 }])
-
-    if (status === 201) {
-      setIdeaText("")
-      ideaRefetch()
-
+    if (ideaText.trim() === "") {
       open({
-        title: "아이디어 등록이 완료되었습니다.",
+        title: "내용을 입력해주세요.",
         onRightButtonClick: () => {
           close()
         }
       })
+    } else {
+      const { count, data, error, status } = await supabase
+        .from("ideas")
+        .insert([{ contents: ideaText, isbn13 }])
+
+      if (status === 201) {
+        setIdeaText("")
+        ideaRefetch()
+
+        open({
+          title: "아이디어 등록이 완료되었습니다.",
+          onRightButtonClick: () => {
+            close()
+          }
+        })
+      }
     }
   }
 
