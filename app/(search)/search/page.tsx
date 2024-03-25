@@ -1,9 +1,13 @@
 import SearchKeywordList from "@/components/search/SearchKeywordList"
 
+import { Suspense } from "react"
+
 const SearchPage = () => {
   return (
     <section>
-      <SearchKeywordList />
+      <Suspense fallback={<div>Loading...</div>}>
+        <SearchKeywordList />
+      </Suspense>
     </section>
   )
 }
