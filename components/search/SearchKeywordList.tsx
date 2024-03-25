@@ -3,12 +3,15 @@
 import * as s from "./Search.css"
 
 import { searchKeywordData } from "@/api/bookApi"
-import { useQuery } from "@tanstack/react-query"
-import { useSearchParams } from "next/navigation"
-import CategoryList from "../shared/category/CategoryList"
-import { useRecoilValue } from "recoil"
-import bookState from "@/recoil/bookAtom"
+
+import CategoryList from "@/components/shared/category/CategoryList"
 import RegisterBookPopUp from "./RegisterBookPopUp"
+
+import bookState from "@/recoil/bookAtom"
+import { useQuery } from "@tanstack/react-query"
+import { useRecoilValue } from "recoil"
+
+import { useSearchParams } from "next/navigation"
 
 const SearchKeywordList = () => {
   const bookStateValue = useRecoilValue(bookState)
@@ -20,8 +23,6 @@ const SearchKeywordList = () => {
     queryKey: ["search", keyword],
     queryFn: () => searchKeywordData(keyword)
   })
-
-  console.log(data?.item)
 
   return (
     <div className={s.searchListContainer}>

@@ -1,4 +1,5 @@
 import * as s from "./IdeaList.css"
+
 import IdeaList from "@/components/menu/IdeaList"
 
 const IdeaPage = () => {

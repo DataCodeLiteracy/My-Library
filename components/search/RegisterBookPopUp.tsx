@@ -1,17 +1,20 @@
 import * as s from "./Search.css"
 
+import BackDrop from "@/components/shared/backdrop/BackDrop"
+import Button from "@/components/shared/button/Button"
+
 import { Item, MyBookInfo } from "@/interfaces/auth/book"
+
 import bookState from "@/recoil/bookAtom"
+import { QueryClient } from "@tanstack/react-query"
 import { ChangeEvent, useEffect, useState } from "react"
 import { useRecoilState } from "recoil"
-import BackDrop from "../shared/backdrop/BackDrop"
 
 import Image from "next/image"
-import Button from "../shared/button/Button"
-import { trimText } from "@/utils/trimText"
-import { supabase } from "@/utils/supabase/client"
 import { useRouter } from "next/navigation"
-import { QueryClient } from "@tanstack/react-query"
+
+import { supabase } from "@/utils/supabase/client"
+import { trimText } from "@/utils/trimText"
 
 interface RegisterBookPopUpProps {
   item: Item[]

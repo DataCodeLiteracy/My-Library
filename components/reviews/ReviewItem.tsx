@@ -1,15 +1,19 @@
 "use client"
 
 import * as s from "./Review.css"
-
 import { CiMenuKebab } from "react-icons/ci"
-import { ReviewItem } from "@/interfaces/auth/book"
-import { supabase } from "@/utils/supabase/client"
-import { MouseEventHandler, useEffect, useRef, useState } from "react"
-import KebabBox from "../shared/box/KebabBox"
-import ModifyTextBox from "../shared/box/ModifyTextBox"
+
+import KebabBox from "@/components/shared/box/KebabBox"
+import ModifyTextBox from "@/components/shared/box/ModifyTextBox"
+
 import useAlertContext from "@/hooks/useAlertContext"
+
+import { ReviewItem } from "@/interfaces/auth/book"
+
+import { MouseEventHandler, useEffect, useRef, useState } from "react"
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query"
+
+import { supabase } from "@/utils/supabase/client"
 
 interface ReviewItemProps {
   item: ReviewItem

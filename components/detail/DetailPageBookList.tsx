@@ -1,25 +1,31 @@
 "use client"
 
-import { MdDeleteSweep } from "react-icons/md"
 import * as s from "./DetailPageBook.css"
+import { MdDeleteSweep } from "react-icons/md"
 
 import {
   getMyBookData,
   getMyBookIdeaData,
   getMyBookReviewData
 } from "@/api/bookApi"
+
+import Ideas from "@/components/ideas/Ideas"
 import Reviews from "@/components/reviews/Reviews"
+import Button from "@/components/shared/button/Button"
+
 import useAlertContext from "@/hooks/useAlertContext"
+
 import { MyBookInfo } from "@/interfaces/auth/book"
-import { supabase } from "@/utils/supabase/client"
-import { trimText } from "@/utils/trimText"
+
 import { useQuery } from "@tanstack/react-query"
+import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react"
+
 import Image from "next/image"
 import Link from "next/link"
-import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react"
-import Ideas from "../ideas/Ideas"
-import Button from "../shared/button/Button"
 import { useRouter } from "next/navigation"
+
+import { supabase } from "@/utils/supabase/client"
+import { trimText } from "@/utils/trimText"
 
 interface DetailPageBookListProps {
   isbn13: string

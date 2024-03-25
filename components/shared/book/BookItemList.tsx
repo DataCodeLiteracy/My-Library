@@ -1,7 +1,8 @@
 import * as s from "./Book.css"
 
-import { MyBookInfo } from "@/interfaces/auth/book"
 import BookItem from "./BookItem"
+
+import { MyBookInfo } from "@/interfaces/auth/book"
 
 interface BookItemListProps {
   item: MyBookInfo[] | undefined

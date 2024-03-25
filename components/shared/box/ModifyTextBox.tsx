@@ -1,6 +1,9 @@
+import * as s from "./Box.css"
+
 import useAlertContext from "@/hooks/useAlertContext"
+
 import { IdeaItem, ReviewItem } from "@/interfaces/auth/book"
-import { supabase } from "@/utils/supabase/client"
+
 import { QueryObserverResult, RefetchOptions } from "@tanstack/react-query"
 import {
   ChangeEvent,
@@ -9,7 +12,8 @@ import {
   SetStateAction,
   useState
 } from "react"
-import * as s from "./Box.css"
+
+import { supabase } from "@/utils/supabase/client"
 
 interface ModifyTextBoxProps {
   type: string

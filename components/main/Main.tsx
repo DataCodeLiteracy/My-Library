@@ -1,14 +1,18 @@
 "use client"
 
+import { getMyBookData } from "@/api/bookApi"
+
+import CategoryList from "@/components/shared/category/CategoryList"
+
 import { MyBookInfo } from "@/interfaces/auth/book"
+
 import authState from "@/recoil/authAtom"
-import { setLocalToken } from "@/utils/localToken"
-import { supabase } from "@/utils/supabase/client"
+import { QueryClient, useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
 import { useSetRecoilState } from "recoil"
-import CategoryList from "../shared/category/CategoryList"
-import { QueryClient, useQuery } from "@tanstack/react-query"
-import { getMyBookData } from "@/api/bookApi"
+
+import { setLocalToken } from "@/utils/localToken"
+import { supabase } from "@/utils/supabase/client"
 
 const Main = () => {
   const { data } = useQuery({ queryKey: ["mybook"], queryFn: getMyBookData })

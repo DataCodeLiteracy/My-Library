@@ -1,8 +1,10 @@
 "use client"
 
 import { getMyBookReviewFilterData } from "@/api/bookApi"
+
+import CategoryList from "@/components/shared/category/CategoryList"
+
 import { useQuery } from "@tanstack/react-query"
-import CategoryList from "../shared/category/CategoryList"
 
 const IdeaList = () => {
   const { data } = useQuery({

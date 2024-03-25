@@ -1,6 +1,4 @@
-import { UserInfo } from '@/interfaces/auth/auth'
-
-import { ValidationFunctions } from '@/utils/isValidationCheck'
+import { UserInfo } from "@/interfaces/auth/auth"
 
 import {
   ChangeEvent,
@@ -9,7 +7,9 @@ import {
   useEffect,
   useRef,
   useState
-} from 'react'
+} from "react"
+
+import { ValidationFunctions } from "@/utils/isValidationCheck"
 
 export interface useFormProps {
   formType: string
@@ -17,10 +17,10 @@ export interface useFormProps {
   validate?: ValidationFunctions
 }
 
-const fields = ['email', 'password', 'rePassword', 'name', 'phoneNo']
+const fields = ["email", "password", "rePassword", "name", "phoneNo"]
 
 const initialValue = Object.fromEntries(
-  fields.map((field) => [field, ''])
+  fields.map((field) => [field, ""])
 ) as UserInfo
 const initialValidValue = Object.fromEntries(
   fields.map((field) => [field, false])
@@ -39,7 +39,7 @@ const useForm = ({ formType, onSubmit, validate }: useFormProps) => {
   const formRef = useRef<HTMLFormElement>(null)
 
   const checkPassword = useCallback(() => {
-    if (values?.password === '') {
+    if (values?.password === "") {
       setIsValid((prev) => ({ ...prev, rePassword: true }))
     } else {
       if (values?.password !== values?.rePassword) {
@@ -59,7 +59,7 @@ const useForm = ({ formType, onSubmit, validate }: useFormProps) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
-    if (value !== '') {
+    if (value !== "") {
       setIsEmpty((prev) => ({ ...prev, [name]: false }))
     } else {
       setIsEmpty((prev) => ({ ...prev, [name]: true }))
@@ -75,13 +75,13 @@ const useForm = ({ formType, onSubmit, validate }: useFormProps) => {
   }
 
   const handleAllUserInfoCheck = () => {
-    if (formType === 'login') {
+    if (formType === "login") {
       const isEmailAndPasswordEntered =
-        values.email !== '' && values.password !== ''
+        values.email !== "" && values.password !== ""
       setIsEnterUserInfo(isEmailAndPasswordEntered)
-    } else if (formType === 'register') {
+    } else if (formType === "register") {
       const isEnteredAllUserInfo = Object.values(values).every(
-        (value) => value !== ''
+        (value) => value !== ""
       )
       setIsEnterUserInfo(isEnteredAllUserInfo)
     }

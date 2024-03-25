@@ -7,9 +7,9 @@ import {
   ReactNode,
   createContext,
   useCallback,
+  useEffect,
   useMemo,
-  useState,
-  useEffect
+  useState
 } from "react"
 import { createPortal } from "react-dom"
 

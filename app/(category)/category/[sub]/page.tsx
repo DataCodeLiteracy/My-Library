@@ -1,5 +1,5 @@
-import CategoryList from "@/components/shared/category/CategoryList"
 import * as s from "../CategoryPage.css"
+
 import SubCategoryList from "@/components/category/SubCategoryList"
 
 interface SubCategoryPageProps {
