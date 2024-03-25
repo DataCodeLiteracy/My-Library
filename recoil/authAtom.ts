@@ -1,4 +1,4 @@
-import { atom, DefaultValue } from 'recoil'
+import { atom, DefaultValue } from "recoil"
 
 interface AuthState {
   isLoggedIn: boolean
@@ -20,24 +20,26 @@ const persistAuthState =
     ) => void
   }) => void) =>
   ({ setSelf, onSet }) => {
-    const savedValue = localStorage.getItem(key)
-    if (savedValue != null) {
-      setSelf(JSON.parse(savedValue))
-    }
-
-    onSet((newValue) => {
-      if (!(newValue instanceof DefaultValue)) {
-        localStorage.setItem(key, JSON.stringify(newValue))
+    if (typeof window !== "undefined") {
+      const savedValue = localStorage.getItem(key)
+      if (savedValue != null) {
+        setSelf(JSON.parse(savedValue))
       }
-    })
+
+      onSet((newValue) => {
+        if (!(newValue instanceof DefaultValue)) {
+          localStorage.setItem(key, JSON.stringify(newValue))
+        }
+      })
+    }
   }
 
 const authState = atom<AuthState>({
-  key: 'authState',
+  key: "authState",
   default: {
     isLoggedIn: false
   },
-  effects_UNSTABLE: [persistAuthState('authState')]
+  effects_UNSTABLE: [persistAuthState("authState")]
 })
 
 export default authState
