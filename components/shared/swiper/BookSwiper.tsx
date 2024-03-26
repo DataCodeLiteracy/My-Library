@@ -20,12 +20,29 @@ const BookSwiper = ({ item }: BookSwiperProps) => {
 
   return (
     <div className='swiper-container'>
-      <div style={{ padding: "10px 20px" }}>
+      <div
+        style={{
+          padding: "10px 20px"
+        }}
+      >
         <Swiper
           loop={true}
           spaceBetween={20}
-          slidesPerView={5}
           navigation={true}
+          breakpoints={{
+            0: {
+              slidesPerView: 1
+            },
+            768: {
+              slidesPerView: 3
+            },
+            1024: {
+              slidesPerView: 4
+            },
+            1280: {
+              slidesPerView: 5
+            }
+          }}
         >
           {item?.map((book) => (
             <SwiperSlide key={book.itemId}>

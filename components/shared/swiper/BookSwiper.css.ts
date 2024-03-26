@@ -1,5 +1,11 @@
 import { globalStyle } from "@vanilla-extract/css"
 
+globalStyle(".swiper-slide", {
+  display: "flex",
+  justifyContent: "center",
+  margin: "auto"
+})
+
 globalStyle(".swiper-button-prev", {
   width: "32px",
   height: "32px",
