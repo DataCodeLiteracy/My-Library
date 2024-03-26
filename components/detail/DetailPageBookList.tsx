@@ -171,13 +171,8 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
             />
           </div>
           <div className={s.detailBookImageAndInfoWrap}>
-            <div>
-              <Image
-                src={detailBook.cover}
-                alt='book cover image'
-                width={300}
-                height={400}
-              />
+            <div className={s.ImageContainer}>
+              <Image src={detailBook.cover} alt='book cover image' fill />
             </div>
             <div className={s.detailBookInfoWrap}>
               <div className={s.detailBookInfoMenuWrap}>
