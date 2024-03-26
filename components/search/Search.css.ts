@@ -29,7 +29,14 @@ export const registerPopUpContainer = style([
     transform: "translate(-50%, -50%)",
     backgroundColor: "white",
     border: "1px solid rgba(0,0,0,0.9)",
-    borderRadius: "10px"
+    borderRadius: "10px",
+    "@media": {
+      "screen and (max-width: 480px)": {
+        width: "100%",
+        height: "100%",
+        borderRadius: "0px"
+      }
+    }
   }
 ])
 
@@ -39,7 +46,27 @@ export const searchBookInfoWrap = style([
     height: "50%",
     maxHeight: "300px",
     marginTop: "20px",
-    borderBottom: "1px solid rgba(0,0,0,0.1)"
+    borderBottom: "1px solid rgba(0,0,0,0.1)",
+    "@media": {
+      "screen and (max-width: 480px)": {
+        flexDirection: "column",
+        alignItems: "center",
+        height: "70%",
+        maxHeight: "500px",
+        marginTop: "0px"
+      }
+    }
+  }
+])
+
+export const searchMenuAndTextWrap = style([
+  f.flex,
+  {
+    "@media": {
+      "screen and (max-width: 480px)": {
+        marginTop: "10px"
+      }
+    }
   }
 ])
 
@@ -115,4 +142,12 @@ export const readCountInput = style({
 
 export const readCountText = style({
   margin: "4px 0px 0px 10px"
+})
+
+export const closeIcon = style({
+  position: "absolute",
+  right: "25px",
+  top: "25px",
+  width: "20px",
+  height: "20px"
 })

@@ -1,4 +1,5 @@
 import * as s from "./Search.css"
+import { IoClose } from "react-icons/io5"
 
 import BackDrop from "@/components/shared/backdrop/BackDrop"
 import Button from "@/components/shared/button/Button"
@@ -104,6 +105,7 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
     <BackDrop onClose={handlePopUpClose}>
       <div className={s.registerPopUpContainer}>
         <h1 className={s.registerPopUpTitle}>내 책 등록하기</h1>
+        <IoClose className={s.closeIcon} onClick={handlePopUpClose} />
         <div className={s.searchBookInfoWrap}>
           <Image
             src={searchedBook?.cover}
@@ -111,19 +113,21 @@ const RegisterBookPopUp = ({ item }: RegisterBookPopUpProps) => {
             width={150}
             height={200}
           />
-          <div className={s.menuWrap}>
-            <span style={{ height: "10%" }}>제목</span>
-            <span style={{ height: "10%" }}>카테고리</span>
-            <span style={{ height: "10%" }}>저자</span>
-            <span style={{ height: "200px" }}>상세 설명</span>
-          </div>
-          <div className={s.searchBookTextWrap}>
-            <h2 style={{ height: "10%" }}>{bookTitle}</h2>
-            <span className={s.searchBookCategory} style={{ height: "10%" }}>
-              {searchedBook?.categoryName}
-            </span>
-            <span style={{ height: "10%" }}>{author}</span>
-            <p style={{ height: "200px" }}>{description}</p>
+          <div className={s.searchMenuAndTextWrap}>
+            <div className={s.menuWrap}>
+              <span style={{ height: "10%" }}>제목</span>
+              <span style={{ height: "10%" }}>카테고리</span>
+              <span style={{ height: "10%" }}>저자</span>
+              <span style={{ height: "200px" }}>상세 설명</span>
+            </div>
+            <div className={s.searchBookTextWrap}>
+              <h2 style={{ height: "10%" }}>{bookTitle}</h2>
+              <span className={s.searchBookCategory} style={{ height: "10%" }}>
+                {searchedBook?.categoryName}
+              </span>
+              <span style={{ height: "10%" }}>{author}</span>
+              <p style={{ height: "200px" }}>{description}</p>
+            </div>
           </div>
         </div>
         <div className={s.checkBoxWrap}>
