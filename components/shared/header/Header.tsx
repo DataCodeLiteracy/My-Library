@@ -120,7 +120,7 @@ const Header = () => {
     <section>
       <nav className={s.nav}>
         <div className={s.leftBox}>
-          <Link href='/'>
+          <Link href='/' className={s.ImageLink}>
             <Image
               src='/images/my_library_logo.png'
               alt='logo image'
@@ -131,7 +131,9 @@ const Header = () => {
           </Link>
 
           <div className={s.buttons}>
-            <button onClick={handleCategoryClick}>카테고리</button>
+            <button className={s.button} onClick={handleCategoryClick}>
+              카테고리
+            </button>
             {isShowCategory && (
               <div className={s.subCategoryWrap}>
                 <ul>
@@ -148,10 +150,21 @@ const Header = () => {
                 </ul>
               </div>
             )}
-            <button onClick={() => moveToPage("read")}>읽은 책</button>
-            <button onClick={() => moveToPage("no-read")}>읽지않은 책</button>
-            <button onClick={() => moveToPage("book-review")}>서평</button>
-            <button onClick={() => moveToPage("idea")}>아이디어</button>
+            <button className={s.button} onClick={() => moveToPage("read")}>
+              읽은 책
+            </button>
+            <button className={s.button} onClick={() => moveToPage("no-read")}>
+              읽지않은 책
+            </button>
+            <button
+              className={s.button}
+              onClick={() => moveToPage("book-review")}
+            >
+              서평
+            </button>
+            <button className={s.button} onClick={() => moveToPage("idea")}>
+              아이디어
+            </button>
           </div>
         </div>
         <div className={s.rightBox}>
