@@ -23,7 +23,14 @@ export const authSectionDefault = style([
   f.flexCenterBox,
   f.hFull,
   {
-    width: "400px"
+    "@media": {
+      "screen and (max-width: 480px)": {
+        width: "100%"
+      },
+      "screen and (min-width: 481px)": {
+        width: "400px"
+      }
+    }
   }
 ])
 
@@ -35,7 +42,12 @@ export const authPageWrapper = style([
     padding: "0 20px",
     borderRadius: "20px",
     boxShadow:
-      "0px 4px 16px rgba(17, 17, 26, 0.1), 0px 8px 24px rgba(17, 17, 26, 0.1), 0px 16px 56px rgba(17, 17, 26, 0.1)"
+      "0px 4px 16px rgba(17, 17, 26, 0.1), 0px 8px 24px rgba(17, 17, 26, 0.1), 0px 16px 56px rgba(17, 17, 26, 0.1)",
+    "@media": {
+      "screen and (max-width: 480px)": {
+        height: "100%"
+      }
+    }
   }
 ])
 
