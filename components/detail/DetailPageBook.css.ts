@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css"
 import { f } from "@/styles/functions"
+import { justifyBetween } from "@/styles/functions/f.css"
 
 export const detailBookTitle = style({
   marginBottom: "20px",
@@ -189,3 +190,19 @@ export const ImageContainer = style({
     }
   }
 })
+
+export const buttonsWrap = style([f.flex, f.justifyBetween])
+
+export const whiteButtonStyle = style([
+  {
+    height: "44px",
+    width: "49%",
+    padding: "10px",
+    margin: "10px 0px",
+    fontSize: "13px",
+    color: "#E191FD",
+    border: "1px solid #E191FD",
+    borderRadius: "10px",
+    backgroundColor: "white"
+  }
+])

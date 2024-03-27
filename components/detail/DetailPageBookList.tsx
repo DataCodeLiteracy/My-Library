@@ -1,7 +1,7 @@
 "use client"
 
-import * as s from "./DetailPageBook.css"
 import { MdDeleteSweep } from "react-icons/md"
+import * as s from "./DetailPageBook.css"
 
 import {
   getMyBookData,
@@ -31,10 +31,22 @@ interface DetailPageBookListProps {
   isbn13: string
 }
 
+interface UserMetadata {
+  user_name?: string
+  displayName?: string
+  name?: string
+}
+
+interface CustomUser {
+  id?: string
+  user_metadata: UserMetadata
+}
+
 const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
   const [detailBook, setDetailBook] = useState<MyBookInfo>({} as MyBookInfo)
   const [reviewText, setReviewText] = useState("")
   const [ideaText, setIdeaText] = useState("")
+  const [userInfo, setUserInfo] = useState<CustomUser | null>(null)
 
   const router = useRouter()
 
@@ -146,12 +158,57 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
     })
   }
 
+  const handleIsLikeRegister = async () => {
+    await supabase
+      .from("mybook")
+      .update({ isLike: true })
+      .eq("user_id", userInfo?.id)
+      .eq("isbn13", isbn13)
+
+    open({
+      title: "좋아하는 책으로 등록되었습니다.",
+      onRightButtonClick: () => {
+        close()
+      }
+    })
+  }
+
+  const handleIsReadRegister = async () => {
+    await supabase
+      .from("mybook")
+      .update({ isRead: true })
+      .eq("user_id", userInfo?.id)
+      .eq("isbn13", isbn13)
+
+    open({
+      title: "읽은 책으로 등록되었습니다.",
+      onRightButtonClick: () => {
+        close()
+      }
+    })
+  }
+
   useEffect(() => {
     const book = filterData(myBookData)
     if (book) {
       setDetailBook(book)
     }
   }, [myBookData, isbn13])
+
+  useEffect(() => {
+    ;(async () => {
+      const { data, error } = await supabase.auth.getUser()
+
+      if (error) {
+        console.error("Error fetching user info:", error)
+        return
+      }
+
+      if (data?.user) {
+        setUserInfo(data.user as CustomUser)
+      }
+    })()
+  }, [])
 
   const bookTitle =
     detailBook?.title?.includes("-") && detailBook.title.split("-")[0]
@@ -225,6 +282,18 @@ const DetailPageBookList = ({ isbn13 }: DetailPageBookListProps) => {
           text='서평 등록하기'
           type='submit'
           onClick={handleRegisterReview}
+        />
+      </div>
+      <div className={s.buttonsWrap}>
+        <Button
+          text='좋아하는 책으로 등록하기'
+          style={s.whiteButtonStyle}
+          onClick={handleIsLikeRegister}
+        />
+        <Button
+          text='읽은 책으로 등록하기'
+          style={s.whiteButtonStyle}
+          onClick={handleIsReadRegister}
         />
       </div>
     </div>

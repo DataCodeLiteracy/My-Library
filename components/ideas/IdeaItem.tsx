@@ -23,6 +23,7 @@ interface IdeaItemProps {
 interface UserMetadata {
   user_name?: string
   displayName?: string
+  name?: string
 }
 
 interface CustomUser {
@@ -84,8 +85,6 @@ const IdeaItem = ({ item, refetch }: IdeaItemProps) => {
     })()
   }, [])
 
-  console.log(userInfo)
-
   useEffect(() => {
     document.addEventListener("click", handleOutsideClick)
 
@@ -101,6 +100,7 @@ const IdeaItem = ({ item, refetch }: IdeaItemProps) => {
           <span className={s.userName}>
             {userInfo?.user_metadata.user_name ||
               userInfo?.user_metadata.displayName ||
+              userInfo?.user_metadata.name ||
               "Unknown User"}
           </span>
           <span className={s.createdAtText}>

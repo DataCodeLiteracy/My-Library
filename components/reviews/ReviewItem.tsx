@@ -24,6 +24,8 @@ interface ReviewItemProps {
 
 interface UserMetadata {
   user_name?: string
+  displayName?: string
+  name?: string
 }
 
 interface CustomUser {
@@ -98,7 +100,10 @@ const ReviewItem = ({ item, refetch }: ReviewItemProps) => {
       <div className={s.titleInfo}>
         <div>
           <span className={s.userName}>
-            {userInfo?.user_metadata.user_name || "Unknown User"}
+            {userInfo?.user_metadata.user_name ||
+              userInfo?.user_metadata.displayName ||
+              userInfo?.user_metadata.name ||
+              "Unknown User"}
           </span>
           <span className={s.createdAtText}>
             {item.created_at.substring(0, 10)} |{" "}
