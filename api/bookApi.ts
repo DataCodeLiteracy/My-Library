@@ -7,7 +7,7 @@ import {
 import { supabase } from "@/utils/supabase/client"
 
 const BASE_URL_LIST = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
-const BASE_URL_SEARCH = "/search/api"
+const BASE_URL_SEARCH = "https://my-library-eta-ruddy.vercel.app/search/api"
 const TTB_KEY = "ttbculture87871410002"
 
 export const getBookData = async (): Promise<BookApiResponse> => {

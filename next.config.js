@@ -11,7 +11,7 @@ const nextConfig = {
     return [
       {
         source: "/search/api/:path*",
-        destination: "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx/:path*"
+        destination: "https://www.aladin.co.kr/ttb/api/ItemSearch.aspx/:path*"
       }
     ]
   }

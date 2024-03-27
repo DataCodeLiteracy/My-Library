@@ -86,6 +86,7 @@ const Header = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSearchKeyword("")
 
     router.push(`/search?keyword=${searchKeyword}`)
 
