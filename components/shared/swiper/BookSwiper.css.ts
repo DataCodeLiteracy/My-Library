@@ -1,9 +1,8 @@
 import { globalStyle } from "@vanilla-extract/css"
 
-globalStyle(".swiper-slide", {
+globalStyle(".swiper-wrapper", {
   display: "flex",
-  justifyContent: "center",
-  margin: "auto"
+  justifyContent: "start"
 })
 
 globalStyle(".swiper-button-prev", {
