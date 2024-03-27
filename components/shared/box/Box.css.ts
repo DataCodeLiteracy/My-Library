@@ -7,7 +7,7 @@ export const kebabWrap = style([
   f.justifyAround,
   f.directionColumn,
   {
-    right: "-50px",
+    right: "16px",
     top: "0px",
     width: "50px",
     height: "80px",

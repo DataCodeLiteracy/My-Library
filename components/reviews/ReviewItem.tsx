@@ -95,6 +95,17 @@ const ReviewItem = ({ item, refetch }: ReviewItemProps) => {
     }
   }, [])
 
+  const options: Intl.DateTimeFormatOptions = {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    timeZone: "Asia/Seoul",
+    hour12: false
+  }
+  const time = new Intl.DateTimeFormat("ko-KR", options).format(
+    new Date(item.created_at)
+  )
+
   return (
     <li className={s.reviewItemStyle}>
       <div className={s.titleInfo}>
@@ -106,8 +117,7 @@ const ReviewItem = ({ item, refetch }: ReviewItemProps) => {
               "Unknown User"}
           </span>
           <span className={s.createdAtText}>
-            {item.created_at.substring(0, 10)} |{" "}
-            {item.created_at.substring(14, 22)}
+            {item.created_at.substring(0, 10)} | {time}
           </span>
         </div>
         <div className={s.kebabIconWrap} ref={menuRef}>

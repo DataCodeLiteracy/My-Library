@@ -14,7 +14,15 @@ export const alertContainer = style([
     backgroundColor: "white",
     borderRadius: "12px",
     overflow: "hidden",
-    zIndex: "22"
+    zIndex: "22",
+    "@media": {
+      "screen and (max-width: 768px)": {
+        width: "60%"
+      },
+      "screen and (max-width: 480px)": {
+        width: "65%"
+      }
+    }
   }
 ])
 

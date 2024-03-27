@@ -38,7 +38,7 @@ export const detailBookWrap = style([
         height: "650px"
       },
       "screen and (max-width: 480px)": {
-        height: "700px",
+        height: "950px",
         borderBottom: "1px solid rgba(0,0,0,0.2)"
       }
     }
@@ -56,7 +56,7 @@ export const detailBookImageAndInfoWrap = style([
         height: "650px"
       },
       "screen and (max-width: 480px)": {
-        height: "650px"
+        height: "950px"
       }
     }
   }
@@ -70,7 +70,7 @@ export const detailBookInfoWrap = style([
         height: "300px"
       },
       "screen and (max-width: 480px)": {
-        height: "500px"
+        height: "650px"
       }
     }
   }
@@ -89,7 +89,8 @@ export const detailBookInfoMenuWrap = style([
         marginLeft: "8px"
       },
       "screen and (max-width: 480px)": {
-        height: "450px"
+        marginLeft: "0px",
+        height: "650px"
       }
     }
   }
@@ -111,8 +112,8 @@ export const detailBookInfoTextWrap = style([
       },
       "screen and (max-width: 480px)": {
         maxWidth: "220px",
-        height: "450px",
-        marginLeft: "10px"
+        height: "650px",
+        marginLeft: "0px"
       }
     }
   }
@@ -132,7 +133,8 @@ export const ideaBoxWrap = style({
       marginTop: "30px"
     },
     "screen and (max-width: 480px)": {
-      marginTop: "30px"
+      marginTop: "30px",
+      padding: "0px"
     }
   }
 })
@@ -142,7 +144,8 @@ export const ideaTextArea = style({
   height: "150px",
   marginBottom: "10px",
   padding: "10px",
-  fontSize: "16px"
+  fontSize: "16px",
+  outline: "none"
 })
 
 export const bookReviewWrap = style({
@@ -154,7 +157,8 @@ export const bookReviewTextArea = style({
   height: "250px",
   marginBottom: "10px",
   padding: "10px",
-  fontSize: "16px"
+  fontSize: "16px",
+  outline: "none"
 })
 
 export const bookReviewTitleWrap = style([
